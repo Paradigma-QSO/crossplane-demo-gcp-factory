@@ -2,10 +2,12 @@
 apiVersion: compute.gcp.crossplane.io/v1beta1
 kind: Network
 metadata:
-  name: {{ include "my-gcp-factory.fullname" . }}-vpc
+  name: {{ include "my-gcp-factory.name" . }}-vpc
   labels:
+    {{- with .Values.my-gcp-factory.labels }}
+    {{ toYaml . | indent 4 }}
+    {{- end }}
     service: network
-    {{- include "my-gcp-factory.labels" . | nindent 4 }}
 
 spec:
   forProvider:
@@ -13,4 +15,4 @@ spec:
     routingConfig:
       routingMode: REGIONAL
   providerConfigRef:
-    name: crossplane-ll-providerconfig
+     name: {{ .Values.provider.gcp.config }}
