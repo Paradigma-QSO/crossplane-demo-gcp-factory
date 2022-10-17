@@ -6,7 +6,6 @@ metadata:
     service: cluster
     creation: crossplane
     instance: {{ .Values.instance.name }}
-    app.kubernetes.io/managed-by: Helm
 spec:
   forProvider:
     initialClusterVersion: {{ .Values.gkecluster.version | quote }}
@@ -27,6 +26,7 @@ spec:
         service: network
         creation: crossplane
         instance: {{ .Values.instance.name }}
+        app.kubernetes.io/managed-by: Helm
     subnetworkSelector:
       matchLabels:
         service: subnetwork
@@ -69,6 +69,7 @@ spec:
         service: nodepool
         creation: crossplane
         instance: {{ .Values.instance.name }}
+        app.kubernetes.io/managed-by: Helm
       oauthScopes:
       - "https://www.googleapis.com/auth/devstorage.read_only"
       - "https://www.googleapis.com/auth/logging.write"
