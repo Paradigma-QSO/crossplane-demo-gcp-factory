@@ -8,7 +8,7 @@ metadata:
     instance: {{ .Values.instance.name }}
 spec:
   forProvider:
-    initialClusterVersion: {{ .Values.gkecluster.version }}
+    initialClusterVersion: "{{ .Values.gkecluster.version }}"
     location: {{ .Values.network.region }}
     locations:
       - "{{ .Values.network.region }}-b"
