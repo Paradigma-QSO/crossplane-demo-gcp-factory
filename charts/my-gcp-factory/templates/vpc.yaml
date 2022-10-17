@@ -4,10 +4,9 @@ kind: Network
 metadata:
   name: {{ include "my-gcp-factory.name" . }}-vpc
   labels:
-    {{- with .Values.my-gcp-factory.labels }}
-    {{ toYaml . | indent 4 }}
-    {{- end }}
     service: network
+    creation: crossplane
+    internal-code: crossplane-lunch-and-learn
 
 spec:
   forProvider:

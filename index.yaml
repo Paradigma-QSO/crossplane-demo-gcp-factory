@@ -3,12 +3,12 @@ entries:
   my-gcp-factory:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-10-17T18:08:55.584826122+02:00"
+    created: "2022-10-17T18:21:56.391791895+02:00"
     description: A Helm chart for a crossplane GCP factory
-    digest: 007565750b32b7089db4bf10a8e0e8c21984ee8b4d959043e9ac72dee889ef4e
+    digest: 6dc476cad4bbc3ea98ddbfca0fed901798df5a30044b2713848a90809661a517
     name: my-gcp-factory
     type: application
     urls:
     - https://paradigma-qso.github.io/crossplane-demo-gcp-factory/charts/my-gcp-factory-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-17T18:08:55.584591525+02:00"
+generated: "2022-10-17T18:21:56.391569837+02:00"
