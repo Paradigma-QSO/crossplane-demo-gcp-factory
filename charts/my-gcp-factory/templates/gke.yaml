@@ -1,0 +1,82 @@
+apiVersion: container.gcp.crossplane.io/v1beta2
+kind: Cluster
+metadata:
+  name: {{ include "my-gcp-factory.name" . }}-gkecluster
+  labels:
+    service: cluster
+    creation: crossplane
+    instance: {{ .Values.instance.name }}
+spec:
+  forProvider:
+    initialClusterVersion: {{ .Values.gkecluster.version }}
+    location: {{ .Values.network.region }}
+    locations:
+      - {{ .Values.network.region }}-"-b"
+      - {{ .Values.network.region }}-"-c"
+      - {{ .Values.network.region }}-"-d"
+    networkConfig:
+      enableIntraNodeVisibility: true
+    loggingService: logging.googleapis.com/kubernetes
+    monitoringService: monitoring.googleapis.com/kubernetes
+    addonsConfig:
+      gcePersistentDiskCsiDriverConfig:
+        enabled: true
+    networkSelector:
+      matchLabels:
+        service: network
+        creation: crossplane
+        instance: {{ .Values.instance.name }}
+    subnetworkSelector:
+      matchLabels:
+        service: subnetwork
+        creation: crossplane
+        instance: {{ .Values.instance.name }}
+    ipAllocationPolicy:
+      useIpAliases: true
+      createSubnetwork: false
+      clusterSecondaryRangeName: pods
+      servicesSecondaryRangeName: services
+  writeConnectionSecretToRef:
+    namespace: {{ .Values.instance.name }}
+    name: {{ include "my-gcp-factory.name" . }}-gkeconn
+  providerConfigRef:
+    name: {{ .Values.provider.gcp.config }}
+---
+apiVersion: container.gcp.crossplane.io/v1beta1
+kind: NodePool
+metadata:
+  name: {{ include "my-gcp-factory.name" . }}-nodepool
+  labels:
+    service: nodepool
+    creation: crossplane
+    instance: {{ .Values.instance.name }}
+spec:
+  forProvider:
+    autoscaling:
+      autoprovisioned: false
+      enabled: false
+    clusterRef:
+      name: {{ include "my-gcp-factory.name" . }}-gkecluster
+    config:
+      machineType: {{ .Values.gkecluster.machineType }}
+      sandboxConfig:
+        type: gvisor
+      diskSizeGb: 120
+      diskType: pd-ssd
+      imageType: cos_containerd
+      labels:
+        test-label: crossplane-created
+      oauthScopes:
+      - "https://www.googleapis.com/auth/devstorage.read_only"
+      - "https://www.googleapis.com/auth/logging.write"
+      - "https://www.googleapis.com/auth/monitoring"
+      - "https://www.googleapis.com/auth/servicecontrol"
+      - "https://www.googleapis.com/auth/service.management.readonly"
+      - "https://www.googleapis.com/auth/trace.append"      
+    initialNodeCount: 1
+    locations:
+      - {{ .Values.network.region }}-"-b"
+      - {{ .Values.network.region }}-"-c"
+      - {{ .Values.network.region }}-"-d"
+  providerConfigRef:
+    name: {{ .Values.provider.gcp.config }}

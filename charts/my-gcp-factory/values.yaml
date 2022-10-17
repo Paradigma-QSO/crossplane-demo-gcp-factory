@@ -18,3 +18,7 @@ network:
   secondarySubnet:
     podsCidrRange: "10.128.0.0/20"
     servicesCidrRange: "172.16.0.0/16"
+
+gkecluster:
+  version: "1.22"
+  machineType: n1-standard-1
