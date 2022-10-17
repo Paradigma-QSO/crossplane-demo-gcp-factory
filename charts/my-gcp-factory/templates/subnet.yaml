@@ -5,7 +5,7 @@ metadata:
   labels:
      service: subnetwork
      creation: crossplane
-     internal-code: {{ .Values.instanceName }}
+     instance: {{ .Values.instance.name }}
 spec:
   forProvider:
     region: {{ .Values.network.region }}
@@ -20,6 +20,6 @@ spec:
       matchLabels:
         service: network
         creation: crossplane
-        internal-code: {{ .Values.instanceName }}
+        instance: {{ .Values.instance.name }}
   providerConfigRef:
      name: {{ .Values.provider.gcp.config }}

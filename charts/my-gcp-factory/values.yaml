@@ -4,6 +4,9 @@
 
 labels: {}
 
+instance:
+  name: crossplane-lunch-and-learn
+
 provider:
   gcp:
     config: default
