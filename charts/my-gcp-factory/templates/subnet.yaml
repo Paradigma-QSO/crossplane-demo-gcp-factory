@@ -16,7 +16,8 @@ spec:
         ipCidrRange: {{ .Values.network.secondarySubnet.podsCidrRange }}
       - rangeName: services
         ipCidrRange: {{ .Values.network.secondarySubnet.servicesCidrRange }}
-    networkRef: {{ include "my-gcp-factory.name" . }}-vpc
+    networkRef:
+      name: {{ include "my-gcp-factory.name" . }}-vpc
     # networkSelector:
     #   matchLabels:
     #     service: network
