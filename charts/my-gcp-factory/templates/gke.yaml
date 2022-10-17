@@ -65,7 +65,9 @@ spec:
       diskType: pd-ssd
       imageType: cos_containerd
       labels:
-        test-label: crossplane-created
+        service: nodepool
+        creation: crossplane
+        instance: {{ .Values.instance.name }}
       oauthScopes:
       - "https://www.googleapis.com/auth/devstorage.read_only"
       - "https://www.googleapis.com/auth/logging.write"
