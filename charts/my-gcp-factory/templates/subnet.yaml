@@ -18,11 +18,5 @@ spec:
         ipCidrRange: {{ .Values.network.secondarySubnet.servicesCidrRange }}
     networkRef:
       name: {{ include "my-gcp-factory.name" . }}-vpc
-    # networkSelector:
-    #   matchLabels:
-    #     service: network
-    #     creation: crossplane
-    #     instance: {{ .Values.instance.name }}
-    #     app.kubernetes.io/managed-by: Helm
   providerConfigRef:
      name: {{ .Values.provider.gcp.config }}

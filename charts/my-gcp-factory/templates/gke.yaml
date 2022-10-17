@@ -22,17 +22,10 @@ spec:
     addonsConfig:
       gcePersistentDiskCsiDriverConfig:
         enabled: true
-    networkSelector:
-      matchLabels:
-        service: network
-        creation: crossplane
-        instance: {{ .Values.instance.name }}
-        app.kubernetes.io/managed-by: Helm
-    subnetworkSelector:
-      matchLabels:
-        service: subnetwork
-        creation: crossplane
-        instance: {{ .Values.instance.name }}
+    networkRef:
+      name: {{ include "my-gcp-factory.name" . }}-vpc
+    subnetworkRef:
+      name: {{ include "my-gcp-factory.name" . }}-subnet
     ipAllocationPolicy:
       useIpAliases: true
       createSubnetwork: false
