@@ -6,6 +6,7 @@ metadata:
     service: cluster
     creation: crossplane
     instance: {{ .Values.instance.name }}
+    app.kubernetes.io/managed-by: Helm
 spec:
   forProvider:
     initialClusterVersion: {{ .Values.gkecluster.version | quote }}

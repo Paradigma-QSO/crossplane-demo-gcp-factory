@@ -6,6 +6,7 @@ metadata:
      service: subnetwork
      creation: crossplane
      instance: {{ .Values.instance.name }}
+     app.kubernetes.io/managed-by: Helm
 spec:
   forProvider:
     region: {{ .Values.network.region }}

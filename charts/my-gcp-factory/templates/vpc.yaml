@@ -7,6 +7,7 @@ metadata:
     service: network
     creation: crossplane
     internal-code: crossplane-lunch-and-learn
+    app.kubernetes.io/managed-by: Helm
 
 spec:
   forProvider:
