@@ -20,5 +20,6 @@ network:
     servicesCidrRange: "172.16.0.0/16"
 
 gkecluster:
+  create: true
   version: "1.22"
   machineType: n1-standard-1
