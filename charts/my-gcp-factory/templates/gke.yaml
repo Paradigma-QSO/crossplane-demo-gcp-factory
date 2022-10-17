@@ -1,3 +1,4 @@
+{{- if .Values.gkecluster.create }}
 apiVersion: container.gcp.crossplane.io/v1beta2
 kind: Cluster
 metadata:
@@ -42,7 +43,9 @@ spec:
     name: {{ include "my-gcp-factory.name" . }}-gkeconn
   providerConfigRef:
     name: {{ .Values.provider.gcp.config }}
+{{- end -}}
 ---
+{{- if .Values.gkecluster.create }}
 apiVersion: container.gcp.crossplane.io/v1beta1
 kind: NodePool
 metadata:
@@ -84,3 +87,4 @@ spec:
       - "{{ .Values.network.region }}-d"
   providerConfigRef:
     name: {{ .Values.provider.gcp.config }}
+{{- end -}}
