@@ -11,9 +11,9 @@ spec:
     initialClusterVersion: {{ .Values.gkecluster.version }}
     location: {{ .Values.network.region }}
     locations:
-      - {{ .Values.network.region }}-"-b"
-      - {{ .Values.network.region }}-"-c"
-      - {{ .Values.network.region }}-"-d"
+      - "{{ .Values.network.region }}-b"
+      - "{{ .Values.network.region }}-c"
+      - "{{ .Values.network.region }}-d"
     networkConfig:
       enableIntraNodeVisibility: true
     loggingService: logging.googleapis.com/kubernetes
@@ -75,8 +75,8 @@ spec:
       - "https://www.googleapis.com/auth/trace.append"      
     initialNodeCount: 1
     locations:
-      - {{ .Values.network.region }}-"-b"
-      - {{ .Values.network.region }}-"-c"
-      - {{ .Values.network.region }}-"-d"
+      - "{{ .Values.network.region }}-b"
+      - "{{ .Values.network.region }}-c"
+      - "{{ .Values.network.region }}-d"
   providerConfigRef:
     name: {{ .Values.provider.gcp.config }}
