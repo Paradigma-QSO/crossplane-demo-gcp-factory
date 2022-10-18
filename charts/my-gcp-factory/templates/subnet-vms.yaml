@@ -1,0 +1,17 @@
+apiVersion: compute.gcp.crossplane.io/v1beta1
+kind: Subnetwork
+metadata:
+  name: {{ include "my-gcp-factory.name" . }}-subnet-vms
+  labels:
+     service: subnetwork
+     creation: crossplane
+     instance: {{ .Values.instance.name }}
+spec:
+  forProvider:
+    region: {{ .Values.network.region }}
+    ipCidrRange: {{ .Values.network.vmsCidrRange }}
+    privateIpGoogleAccess: true
+    networkRef:
+      name: {{ include "my-gcp-factory.name" . }}-vpc-vms
+  providerConfigRef:
+     name: {{ .Values.provider.gcp.config }}

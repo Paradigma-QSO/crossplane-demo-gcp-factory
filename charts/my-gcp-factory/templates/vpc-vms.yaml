@@ -1,0 +1,16 @@
+---
+apiVersion: compute.gcp.crossplane.io/v1beta1
+kind: Network
+metadata:
+  name: {{ include "my-gcp-factory.name" . }}-vpc-vms
+  labels:
+    service: network
+    creation: crossplane
+    internal-code: crossplane-lunch-and-learn
+spec:
+  forProvider:
+    autoCreateSubnetworks: false
+    routingConfig:
+      routingMode: REGIONAL
+  providerConfigRef:
+     name: {{ .Values.provider.gcp.config }}

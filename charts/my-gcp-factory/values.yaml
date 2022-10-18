@@ -18,6 +18,7 @@ network:
   secondarySubnet:
     podsCidrRange: "10.128.0.0/20"
     servicesCidrRange: "172.16.0.0/16"
+  vmsCidrRange: "192.168.100.0/24"
 
 gkecluster:
   create: true
