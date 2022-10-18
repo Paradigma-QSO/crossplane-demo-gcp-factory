@@ -59,11 +59,6 @@ spec:
       diskSizeGb: 120
       diskType: pd-ssd
       imageType: cos_containerd
-      labels:
-        service: nodepool
-        creation: crossplane
-        instance: {{ .Values.instance.name }}
-        app.kubernetes.io/managed-by: Helm
       oauthScopes:
       - "https://www.googleapis.com/auth/devstorage.read_only"
       - "https://www.googleapis.com/auth/logging.write"
