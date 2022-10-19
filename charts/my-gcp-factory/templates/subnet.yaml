@@ -11,7 +11,7 @@ spec:
     region: {{ .Values.network.region }}
     ipCidrRange: {{ .Values.network.primarySubnet.nodesCidrRange }}
     privateIpGoogleAccess: true
-    secondaryIpRanges:
+    secondaryIpRange:
       - rangeName: pods
         ipCidrRange: {{ .Values.network.secondarySubnet.podsCidrRange }}
       - rangeName: services
