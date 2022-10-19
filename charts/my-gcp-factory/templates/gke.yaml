@@ -40,7 +40,7 @@ spec:
   forProvider:
     clusterRef:
       name: {{ include "my-gcp-factory.name" . }}-gkecluster
-    config:
+    nodeConfig:
       machineType: {{ .Values.gkecluster.machineType }}
       sandboxConfig:
         type: gvisor
@@ -54,7 +54,7 @@ spec:
       - "https://www.googleapis.com/auth/servicecontrol"
       - "https://www.googleapis.com/auth/service.management.readonly"
       - "https://www.googleapis.com/auth/trace.append"      
-    initialNodeCount: 1
+    nodeCount: 1
     nodeLocations:
       - "{{ .Values.network.region }}-b"
       - "{{ .Values.network.region }}-c"
