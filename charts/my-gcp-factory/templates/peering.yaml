@@ -10,7 +10,7 @@ spec:
   forProvider:
     networkRef:
       name: my-gcp-factory-vpc
-    networkRef:
+    peerNetworkRef:
       name: my-gcp-factory-vpc-vms
   providerConfigRef:
     name: {{ .Values.provider.gcp.config }}
