@@ -11,6 +11,7 @@ spec:
   forProvider:
     minMasterVersion: {{ .Values.gkecluster.version | quote }}
     initialNodeCount: 1
+    removeDefaultNodePool: true
     clusterAutoscaling:
       - enabled: false
     location: {{ .Values.network.region }}
