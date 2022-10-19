@@ -1,0 +1,15 @@
+apiVersion: compute.gcp.upbound.io/v1beta1
+kind: NetworkPeering
+metadata:
+    service: nodepool
+    creation: crossplane
+    instance: {{ .Values.instance.name }}
+  name: {{ include "my-gcp-factory.name" . }}-peering
+spec:
+  forProvider:
+    networkRef:
+      name: my-gcp-factory-vpc
+    networkRef:
+      name: my-gcp-factory-vpc-vms
+  providerConfigRef:
+    name: {{ .Values.provider.gcp.config }}
