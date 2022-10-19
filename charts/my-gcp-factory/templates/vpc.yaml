@@ -1,7 +1,7 @@
 apiVersion: compute.gcp.upbound.io/v1beta1
 kind: Network
 metadata:
-  name: {{ include "my-gcp-factory.name" . }}
+  name: {{ include "my-gcp-factory.name" . }}-vpc
   labels:
     service: network
     creation: crossplane
