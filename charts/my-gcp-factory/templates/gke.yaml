@@ -10,6 +10,8 @@ metadata:
 spec:
   forProvider:
     minMasterVersion: {{ .Values.gkecluster.version | quote }}
+    clusterAutoscaling:
+      - enabled: false
     location: {{ .Values.network.region }}
     loggingService: logging.googleapis.com/kubernetes
     monitoringService: monitoring.googleapis.com/kubernetes
@@ -36,8 +38,6 @@ metadata:
     instance: {{ .Values.instance.name }}
 spec:
   forProvider:
-    clusterAutoscaling:
-      - enabled: false
     clusterRef:
       name: {{ include "my-gcp-factory.name" . }}-gkecluster
     config:
