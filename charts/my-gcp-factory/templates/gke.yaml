@@ -42,8 +42,6 @@ spec:
       name: {{ include "my-gcp-factory.name" . }}-gkecluster
     nodeConfig:
       - machineType: {{ .Values.gkecluster.machineType }}
-        sandboxConfig:
-          type: gvisor
         diskSizeGb: 120
         diskType: pd-ssd
         imageType: cos_containerd
