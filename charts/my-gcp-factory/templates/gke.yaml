@@ -36,9 +36,8 @@ metadata:
     instance: {{ .Values.instance.name }}
 spec:
   forProvider:
-    autoscaling:
-      - autoprovisioned: false
-        enabled: false
+    clusterAutoscaling:
+      - enabled: false
     clusterRef:
       name: {{ include "my-gcp-factory.name" . }}-gkecluster
     config:
