@@ -11,20 +11,13 @@ spec:
   forProvider:
     minMasterVersion: {{ .Values.gkecluster.version | quote }}
     location: {{ .Values.network.region }}
-    networkConfig:
-      enableIntraNodeVisibility: true
     loggingService: logging.googleapis.com/kubernetes
     monitoringService: monitoring.googleapis.com/kubernetes
-    addonsConfig:
-      gcePersistentDiskCsiDriverConfig:
-        enabled: true
     networkRef:
       name: {{ include "my-gcp-factory.name" . }}-vpc
     subnetworkRef:
       name: {{ include "my-gcp-factory.name" . }}-subnet
     ipAllocationPolicy:
-      useIpAliases: true
-      createSubnetwork: false
       clusterSecondaryRangeName: pods
       servicesSecondaryRangeName: services
   writeConnectionSecretToRef:
