@@ -1,5 +1,5 @@
 {{- if .Values.gkecluster.create }}
-apiVersion: container.gcp.crossplane.io/v1beta2
+apiVersion: container.gcp.upbound.io/v1beta1
 kind: Cluster
 metadata:
   name: {{ include "my-gcp-factory.name" . }}-gkecluster
@@ -9,12 +9,8 @@ metadata:
     instance: {{ .Values.instance.name }}
 spec:
   forProvider:
-    initialClusterVersion: {{ .Values.gkecluster.version | quote }}
+    minMasterVersion: {{ .Values.gkecluster.version | quote }}
     location: {{ .Values.network.region }}
-    locations:
-      - "{{ .Values.network.region }}-b"
-      - "{{ .Values.network.region }}-c"
-      - "{{ .Values.network.region }}-d"
     networkConfig:
       enableIntraNodeVisibility: true
     loggingService: logging.googleapis.com/kubernetes
@@ -37,7 +33,7 @@ spec:
   providerConfigRef:
     name: {{ .Values.provider.gcp.config }}
 ---
-apiVersion: container.gcp.crossplane.io/v1beta1
+apiVersion: container.gcp.upbound.io/v1beta1
 kind: NodePool
 metadata:
   name: {{ include "my-gcp-factory.name" . }}-nodepool
@@ -67,7 +63,7 @@ spec:
       - "https://www.googleapis.com/auth/service.management.readonly"
       - "https://www.googleapis.com/auth/trace.append"      
     initialNodeCount: 1
-    locations:
+    nodeLocations:
       - "{{ .Values.network.region }}-b"
       - "{{ .Values.network.region }}-c"
       - "{{ .Values.network.region }}-d"
