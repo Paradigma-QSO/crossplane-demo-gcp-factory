@@ -18,8 +18,8 @@ spec:
     subnetworkRef:
       name: {{ include "my-gcp-factory.name" . }}-subnet
     ipAllocationPolicy:
-      clusterSecondaryRangeName: pods
-      servicesSecondaryRangeName: services
+      - clusterSecondaryRangeName: pods
+        servicesSecondaryRangeName: services
   writeConnectionSecretToRef:
     namespace: {{ .Values.instance.name }}
     name: {{ include "my-gcp-factory.name" . }}-gkeconn
