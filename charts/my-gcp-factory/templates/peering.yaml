@@ -1,6 +1,7 @@
 apiVersion: compute.gcp.upbound.io/v1beta1
 kind: NetworkPeering
 metadata:
+  labels:
     service: nodepool
     creation: crossplane
     instance: {{ .Values.instance.name }}
