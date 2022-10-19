@@ -41,19 +41,19 @@ spec:
     clusterRef:
       name: {{ include "my-gcp-factory.name" . }}-gkecluster
     nodeConfig:
-      machineType: {{ .Values.gkecluster.machineType }}
-      sandboxConfig:
-        type: gvisor
-      diskSizeGb: 120
-      diskType: pd-ssd
-      imageType: cos_containerd
-      oauthScopes:
-      - "https://www.googleapis.com/auth/devstorage.read_only"
-      - "https://www.googleapis.com/auth/logging.write"
-      - "https://www.googleapis.com/auth/monitoring"
-      - "https://www.googleapis.com/auth/servicecontrol"
-      - "https://www.googleapis.com/auth/service.management.readonly"
-      - "https://www.googleapis.com/auth/trace.append"      
+      - machineType: {{ .Values.gkecluster.machineType }}
+        sandboxConfig:
+          type: gvisor
+        diskSizeGb: 120
+        diskType: pd-ssd
+        imageType: cos_containerd
+        oauthScopes:
+        - "https://www.googleapis.com/auth/devstorage.read_only"
+        - "https://www.googleapis.com/auth/logging.write"
+        - "https://www.googleapis.com/auth/monitoring"
+        - "https://www.googleapis.com/auth/servicecontrol"
+        - "https://www.googleapis.com/auth/service.management.readonly"
+        - "https://www.googleapis.com/auth/trace.append"      
     nodeCount: 1
     nodeLocations:
       - "{{ .Values.network.region }}-b"
