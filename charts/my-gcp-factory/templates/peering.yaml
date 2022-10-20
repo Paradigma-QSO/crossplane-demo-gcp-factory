@@ -9,8 +9,8 @@ metadata:
 spec:
   forProvider:
     networkRef:
-      name: {{ include "my-gcp-factory.name" . }}-vpc-vms
-    peerNetworkRef:
       name: {{ include "my-gcp-factory.name" . }}-vpc
+    peerNetworkRef:
+      name: {{ include "my-gcp-factory.name" . }}-vpc-vms
   providerConfigRef:
     name: {{ .Values.provider.gcp.config }}
