@@ -5,7 +5,7 @@ metadata:
     service: nodepool
     creation: crossplane
     instance: {{ .Values.instance.name }}
-  name: {{ include "my-gcp-factory.name" . }}-peering
+  name: {{ include "my-gcp-factory.name" . }}-peering-vms
 spec:
   forProvider:
     networkRef:
